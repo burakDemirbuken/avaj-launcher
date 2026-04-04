@@ -1,6 +1,6 @@
-package src.simulator.Scenario;
+package simulation.Scenario;
 
-import src.simulator.excaptions.InvalidScenarioException;
+import simulation.exceptions.InvalidScenarioException;
 
 public class ScenarioFormat
 {
@@ -17,6 +17,8 @@ public class ScenarioFormat
 		Longitude = longitude;
 		Latitude = latitude;
 		Height = height;
+		if (this.isValid() == false)
+			throw new InvalidScenarioException("Invalid scenario format: " + type + " " + name + " " + longitude + " " + latitude + " " + height);
 	}
 
 	public static ScenarioFormat isValidScenarioFormat(String line)
@@ -41,5 +43,14 @@ public class ScenarioFormat
 		}
 
 		return new ScenarioFormat(type, name, longitude, latitude, height);
-	}	
+	}
+
+	private boolean isValid()
+	{
+		if ("Balloon".equals(Type) == false && "Helicopter".equals(Type) == false && "JetPlane".equals(Type) == false)
+			return false;
+		if (Longitude < 0 || Latitude < 0 || Height < 0 || Height > 100)
+			return false;
+		return true;
+	}
 }

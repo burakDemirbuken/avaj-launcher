@@ -1,6 +1,6 @@
-package src.simulator;
+import simulation.Simulator;
 
-public class Simulator
+public class Main
 {
 	public static void main(String[] args)
 	{
@@ -9,6 +9,8 @@ public class Simulator
 			System.out.println("Usage: java Simulator <scenario file>");
 			return;
 		}
-		
-	}	
+
+		Simulator simulator = new Simulator(args[0]);
+		simulator.run();
+	}
 }

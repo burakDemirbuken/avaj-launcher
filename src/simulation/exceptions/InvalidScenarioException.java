@@ -1,4 +1,4 @@
-package src.simulator.excaptions;
+package simulation.exceptions;
 
 public class InvalidScenarioException extends RuntimeException
 {

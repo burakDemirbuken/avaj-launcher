@@ -1,4 +1,4 @@
-package src.weather;
+package simulation.vehicles;
 
 public class Coordinates
 {
@@ -23,6 +23,5 @@ public class Coordinates
 
 	public int getLongitude() {
 		return longitude;
-	}
-	
+	}	
 }

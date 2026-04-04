@@ -1,16 +1,16 @@
-package src.simulator.Scenario;
+package simulation.Scenario;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import src.simulator.excaptions.InvalidScenarioException;
+import simulation.exceptions.InvalidScenarioException;
 
 public class ScenarioReader
 {
-	public ArrayList<ScenarioFormat> scenarios;
-	public int scenarioCount;
-	public int simulationCount;
+	private ArrayList<ScenarioFormat> scenarios;
+	private int scenarioCount;
+	private int simulationCount;
 
 	public ScenarioReader(ArrayList<ScenarioFormat> scenarios, int scenarioCount, int simulationCount)
 	{
@@ -19,12 +19,15 @@ public class ScenarioReader
 		this.simulationCount = simulationCount;
 	}
 
-	public static void readScenario(String filePath)
+	public static ScenarioReader readScenario(String filePath)
 	{
 		ArrayList<ScenarioFormat> scenarios;
 		int scenarioCount;
 		int simulationCount;
 
+		scenarios = new ArrayList<>();
+		scenarioCount = 0;
+		simulationCount = 0;
 		if (filePath == null)
 			throw new InvalidScenarioException("File path cannot be null");
 
@@ -45,9 +48,12 @@ public class ScenarioReader
 				throw new InvalidScenarioException("Number of simulations must be a positive integer");
 			while ((line = reader.readLine()) != null)
 			{
-
-
+				ScenarioFormat scenario = ScenarioFormat.isValidScenarioFormat(line);
+				scenarios.add(scenario);
+				scenarioCount++;
 			}
+			if (scenarioCount == 0)
+				throw new InvalidScenarioException("No scenarios found in the file");
 		}
 		catch (InvalidScenarioException e)
 		{
@@ -57,5 +63,19 @@ public class ScenarioReader
 		{
 			throw new InvalidScenarioException("Unexpected error occurred while reading scenario file");
 		}
-	}	
+		return new ScenarioReader(scenarios, scenarioCount, simulationCount);
+	}
+	
+	public int getScenarioCount()
+	{
+		return scenarioCount;
+	}
+	public ArrayList<ScenarioFormat> getScenarios()
+	{
+		return scenarios;
+	}
+	public int getSimulationCount()
+	{
+		return simulationCount;
+	}
 }
