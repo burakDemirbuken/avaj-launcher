@@ -1,5 +1,7 @@
 package simulation.vehicles;
 
+import simulation.Logger;
+
 public class Helicopter extends Aircraft
 {
 	Helicopter(Long p_id, String p_name, Coordinates p_coordinates)
@@ -10,28 +12,29 @@ public class Helicopter extends Aircraft
 	public void updateConditions()
 	{
 		String weather = weatherTower.getWeather(coordinates);
+		Logger.print(this + ": ");
 		switch (weather)
 		{
 			case "SUN":
 				coordinates = new Coordinates(coordinates.getLongitude() + 10, coordinates.getLatitude(), coordinates.getHeight() + 2);
-				System.out.println("Helicopter#" + name + "(" + id + "): This is hot.");
+				Logger.println("This is hot.");
 				break;
 			case "RAIN":
 				coordinates = new Coordinates(coordinates.getLongitude() + 5, coordinates.getLatitude(), coordinates.getHeight());
-				System.out.println("Helicopter#" + name + "(" + id + "): It's raining. Better watch out for lightings.");
+				Logger.println("It's raining. Better watch out for lightings.");
 				break;
 			case "FOG":
 				coordinates = new Coordinates(coordinates.getLongitude() + 1, coordinates.getLatitude(), coordinates.getHeight());
-				System.out.println("Helicopter#" + name + "(" + id + "): Can't see anything in this fog.");
+				Logger.println("Can't see anything in this fog.");
 				break;
 			case "SNOW":
 				coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 12);
-				System.out.println("Helicopter#" + name + "(" + id + "): My rotor is going to freeze!");
+				Logger.println("My rotor is going to freeze!");
 				break;
 		}
 		if (coordinates.getHeight() <= 0)
 		{
-			System.out.println("Helicopter#" + name + "(" + id + "): landing.");
+			Logger.println(this + " landing.");
 			weatherTower.unregister(this);
 		}
 		else if (coordinates.getHeight() > 100)

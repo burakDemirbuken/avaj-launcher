@@ -1,5 +1,7 @@
 package simulation.vehicles;
 
+import simulation.Logger;
+
 public class Balloon extends Aircraft
 {
 
@@ -11,28 +13,29 @@ public class Balloon extends Aircraft
 	public void updateConditions()
 	{
 		String weather = weatherTower.getWeather(coordinates);
+		Logger.print(this + ": ");
 		switch (weather)
 		{
 			case "SUN":
 				coordinates = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude(), coordinates.getHeight() + 4);
-				System.out.println("Balloon#" + name + "(" + id + "): Let's enjoy the good weather and take some pics.");
+				Logger.println("Let's enjoy the good weather and take some pics.");
 				break;
 			case "RAIN":
 				coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 5);
-				System.out.println("Balloon#" + name + "(" + id + "): Damn you rain! You messed up my balloon.");
+				Logger.println("Damn you rain! You messed up my balloon.");
 				break;
 			case "FOG":
 				coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 3);
-				System.out.println("Balloon#" + name + "(" + id + "): Can't see anything in this fog.");
+				Logger.println("Can't see anything in this fog.");
 				break;
 			case "SNOW":
 				coordinates = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 15);
-				System.out.println("Balloon#" + name + "(" + id + "): It's snowing. We're gonna crash.");
+				Logger.println("It's snowing. We're gonna crash.");
 				break;
 		}
 		if (coordinates.getHeight() <= 0)
 		{
-			System.out.println("Balloon#" + name + "(" + id + "): landing.");
+			Logger.println(this + " landing.");
 			weatherTower.unregister(this);
 		}
 		else if (coordinates.getHeight() > 100)

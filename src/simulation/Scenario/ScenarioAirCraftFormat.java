@@ -2,7 +2,7 @@ package simulation.Scenario;
 
 import simulation.exceptions.InvalidScenarioException;
 
-public class ScenarioFormat
+public class ScenarioAirCraftFormat
 {
 	public String Type;
 	public String Name;
@@ -10,7 +10,7 @@ public class ScenarioFormat
 	public int Latitude;
 	public int Height;
 
-	public ScenarioFormat(String type, String name, int longitude, int latitude, int height)
+	public ScenarioAirCraftFormat(String type, String name, int longitude, int latitude, int height)
 	{
 		Type = type;
 		Name = name;
@@ -21,7 +21,7 @@ public class ScenarioFormat
 			throw new InvalidScenarioException("Invalid scenario format: " + type + " " + name + " " + longitude + " " + latitude + " " + height);
 	}
 
-	public static ScenarioFormat isValidScenarioFormat(String line)
+	public static ScenarioAirCraftFormat isValidScenarioFormat(String line)
 	{
 		String[] parts = line.split("\\s+");
 
@@ -42,7 +42,7 @@ public class ScenarioFormat
 			throw new InvalidScenarioException("Invalid scenario format: " + line);
 		}
 
-		return new ScenarioFormat(type, name, longitude, latitude, height);
+		return new ScenarioAirCraftFormat(type, name, longitude, latitude, height);
 	}
 
 	private boolean isValid()

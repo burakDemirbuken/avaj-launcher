@@ -2,7 +2,10 @@ package simulation.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
+import simulation.Logger;
+
 import simulation.vehicles.Flyable;
+
 
 public class Tower
 {
@@ -18,21 +21,22 @@ public class Tower
 	public void register(Flyable p_flyable)
 	{
 		observers.add(p_flyable);
-		System.out.println("Tower says: " + p_flyable + " registered to weather tower.");
+		p_flyable.registerTower((WeatherTower)this);
+		Logger.println("Tower says: " + p_flyable + " registered to weather tower.");
 	}
 
 	public void unregister(Flyable p_flyable)
 	{
 		observers.remove(p_flyable);
-		System.out.println("Tower says: " + p_flyable + " unregistered from weather tower.");
+		Logger.println("Tower says: " + p_flyable + " unregistered from weather tower.");
 	}
 	 
 	protected void conditionsChanged()
 	{
-		for (Flyable flyable : observers)
+		List<Flyable> currentObservers = new ArrayList<>(observers);
+		for (Flyable flyable : currentObservers)
 		{
 			flyable.updateConditions();
-			flyable.registerTower((WeatherTower)this);
 		}
 	}
 	

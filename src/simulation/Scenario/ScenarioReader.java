@@ -8,25 +8,25 @@ import simulation.exceptions.InvalidScenarioException;
 
 public class ScenarioReader
 {
-	private ArrayList<ScenarioFormat> scenarios;
-	private int scenarioCount;
+	private ArrayList<ScenarioAirCraftFormat> scenarios;
+	private int aircraftCount;
 	private int simulationCount;
 
-	public ScenarioReader(ArrayList<ScenarioFormat> scenarios, int scenarioCount, int simulationCount)
+	public ScenarioReader(ArrayList<ScenarioAirCraftFormat> scenarios, int aircraftCount, int simulationCount)
 	{
 		this.scenarios = scenarios;
-		this.scenarioCount = scenarioCount;
+		this.aircraftCount = aircraftCount;
 		this.simulationCount = simulationCount;
 	}
 
 	public static ScenarioReader readScenario(String filePath)
 	{
-		ArrayList<ScenarioFormat> scenarios;
-		int scenarioCount;
+		ArrayList<ScenarioAirCraftFormat> scenarios;
+		int aircraftCount;
 		int simulationCount;
 
 		scenarios = new ArrayList<>();
-		scenarioCount = 0;
+		aircraftCount = 0;
 		simulationCount = 0;
 		if (filePath == null)
 			throw new InvalidScenarioException("File path cannot be null");
@@ -48,11 +48,11 @@ public class ScenarioReader
 				throw new InvalidScenarioException("Number of simulations must be a positive integer");
 			while ((line = reader.readLine()) != null)
 			{
-				ScenarioFormat scenario = ScenarioFormat.isValidScenarioFormat(line);
+				ScenarioAirCraftFormat scenario = ScenarioAirCraftFormat.isValidScenarioFormat(line);
 				scenarios.add(scenario);
-				scenarioCount++;
+				aircraftCount++;
 			}
-			if (scenarioCount == 0)
+			if (aircraftCount == 0)
 				throw new InvalidScenarioException("No scenarios found in the file");
 		}
 		catch (InvalidScenarioException e)
@@ -63,14 +63,14 @@ public class ScenarioReader
 		{
 			throw new InvalidScenarioException("Unexpected error occurred while reading scenario file");
 		}
-		return new ScenarioReader(scenarios, scenarioCount, simulationCount);
+		return new ScenarioReader(scenarios, aircraftCount, simulationCount);
 	}
 	
-	public int getScenarioCount()
+	public int getAircraftCount()
 	{
-		return scenarioCount;
+		return aircraftCount;
 	}
-	public ArrayList<ScenarioFormat> getScenarios()
+	public ArrayList<ScenarioAirCraftFormat> getScenarios()
 	{
 		return scenarios;
 	}
