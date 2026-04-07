@@ -55,12 +55,13 @@ public class ScenarioReader
 			if (aircraftCount == 0)
 				throw new InvalidScenarioException("No scenarios found in the file");
 		}
-		catch (InvalidScenarioException e)
+		catch (java.io.FileNotFoundException e)
 		{
-			throw e;
+			throw new InvalidScenarioException("Scenario file not found: " + filePath);
 		}
 		catch (Exception e)
 		{
+			System.out.println(e);
 			throw new InvalidScenarioException("Unexpected error occurred while reading scenario file");
 		}
 		return new ScenarioReader(scenarios, aircraftCount, simulationCount);

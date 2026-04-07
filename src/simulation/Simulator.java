@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import simulation.Scenario.ScenarioAirCraftFormat;
 import simulation.Scenario.ScenarioReader;
-import simulation.Tower.Tower;
 import simulation.Tower.WeatherTower;
 import simulation.vehicles.AircraftFactory;
 import simulation.vehicles.Flyable;
@@ -60,7 +59,10 @@ public class Simulator
 		}
 		for (int i = 0; i < simulationCount; i++)
 		{
+			Logger.println("");
+			Logger.println("Simulation " + (i + 1) + ":");
 			weatherTower.changeWeather();
+
 		}
 	}
 
