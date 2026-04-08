@@ -1,10 +1,10 @@
-package simulation.vehicles;
+package vehicles;
 
 public class Aircraft extends Flyable
 {
-	long		id;
-	String		name;
-	Coordinates	coordinates;
+	protected long		id;
+	protected String		name;
+	protected Coordinates	coordinates;
 
 	public void updateConditions()
 	{
@@ -23,5 +23,5 @@ public class Aircraft extends Flyable
 	{
 		return this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + ")";
 	}
-		
+
 }

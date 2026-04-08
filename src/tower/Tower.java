@@ -1,16 +1,16 @@
-package simulation.Tower;
+package tower;
 
 import java.util.ArrayList;
 import java.util.List;
-import simulation.Logger;
 
-import simulation.vehicles.Flyable;
+import logger.Logger;
+import vehicles.Flyable;
 
 
 public class Tower
 {
 
-	List<Flyable> observers;
+	private List<Flyable> observers;
 
 
 	public Tower()
@@ -30,7 +30,7 @@ public class Tower
 		observers.remove(p_flyable);
 		Logger.println("Tower says: " + p_flyable + " unregistered from weather tower.");
 	}
-	 
+
 	protected void conditionsChanged()
 	{
 		List<Flyable> currentObservers = new ArrayList<>(observers);
@@ -39,5 +39,5 @@ public class Tower
 			flyable.updateConditions();
 		}
 	}
-	
+
 }

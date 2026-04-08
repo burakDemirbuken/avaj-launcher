@@ -1,4 +1,4 @@
-package simulation;
+package logger;
 
 import java.io.FileWriter;
 
@@ -6,7 +6,7 @@ public class Logger
 {
 	private static Logger logger = null;
 	FileWriter fileWriter;
-	
+
 	private Logger()
 	{
 		try
@@ -44,5 +44,20 @@ public class Logger
 	public static void println(String message)
 	{
 		print(message + "\n");
+	}
+
+	public static void close()
+	{
+		if (logger == null)
+			return;
+		try
+		{
+			getLogger().fileWriter.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+			System.exit(1);
+		}
 	}
 }

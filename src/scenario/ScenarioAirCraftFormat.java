@@ -1,6 +1,6 @@
-package simulation.Scenario;
+package scenario;
 
-import simulation.exceptions.InvalidScenarioException;
+import exceptions.InvalidScenarioException;
 
 public class ScenarioAirCraftFormat
 {

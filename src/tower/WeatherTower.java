@@ -1,6 +1,6 @@
-package simulation.Tower;
+package tower;
 
-import simulation.vehicles.Coordinates;
+import vehicles.Coordinates;
 
 public class WeatherTower extends Tower
 {
@@ -13,5 +13,5 @@ public class WeatherTower extends Tower
 	public void changeWeather()
 	{
 		this.conditionsChanged();
-	} 
+	}
 }

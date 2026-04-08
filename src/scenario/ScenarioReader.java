@@ -1,10 +1,10 @@
-package simulation.Scenario;
+package scenario;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import simulation.exceptions.InvalidScenarioException;
+import exceptions.InvalidScenarioException;
 
 public class ScenarioReader
 {
@@ -30,6 +30,9 @@ public class ScenarioReader
 		simulationCount = 0;
 		if (filePath == null)
 			throw new InvalidScenarioException("File path cannot be null");
+
+		if (filePath.trim().isEmpty())
+			throw new InvalidScenarioException("File path cannot be empty");
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(filePath)))
 		{
@@ -64,9 +67,10 @@ public class ScenarioReader
 			System.out.println(e);
 			throw new InvalidScenarioException("Unexpected error occurred while reading scenario file");
 		}
+
 		return new ScenarioReader(scenarios, aircraftCount, simulationCount);
 	}
-	
+
 	public int getAircraftCount()
 	{
 		return aircraftCount;

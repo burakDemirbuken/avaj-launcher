@@ -1,6 +1,6 @@
-package simulation.vehicles;
+package vehicles;
 
-import simulation.Logger;
+import logger.Logger;
 
 public class Balloon extends Aircraft
 {

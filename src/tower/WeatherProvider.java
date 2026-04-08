@@ -1,6 +1,6 @@
-package simulation.Tower;
+package tower;
 
-import simulation.vehicles.Coordinates;
+import vehicles.Coordinates;
 
 public class WeatherProvider
 {

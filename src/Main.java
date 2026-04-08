@@ -1,4 +1,4 @@
-import simulation.Simulator;
+import simulator.Simulator;
 
 public class Main
 {

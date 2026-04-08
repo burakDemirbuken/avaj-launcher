@@ -1,4 +1,4 @@
-package simulation.vehicles;
+package vehicles;
 
 public class Coordinates
 {
@@ -23,5 +23,5 @@ public class Coordinates
 
 	public int getLongitude() {
 		return longitude;
-	}	
+	}
 }

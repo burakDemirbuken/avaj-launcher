@@ -12,12 +12,13 @@ compile: sources
 sources:
 	@find . -name "*.java" > $(SOURCES_FILE)
 
-run: compile 
+run: compile
 	@java -cp $(BIN_DIR) $(MAIN_CLASS) $(SCENARIO)
 
 fclean:
 	@rm -f $(SOURCES_FILE)
 	@rm -rf $(BIN_DIR)
+	@rm -rf simulation.txt
 
 re: fclean all
 

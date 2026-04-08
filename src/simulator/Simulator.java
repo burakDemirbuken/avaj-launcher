@@ -1,12 +1,12 @@
-package simulation;
-
+package simulator;
 import java.util.ArrayList;
+import logger.Logger;
 
-import simulation.Scenario.ScenarioAirCraftFormat;
-import simulation.Scenario.ScenarioReader;
-import simulation.Tower.WeatherTower;
-import simulation.vehicles.AircraftFactory;
-import simulation.vehicles.Flyable;
+import scenario.ScenarioAirCraftFormat;
+import scenario.ScenarioReader;
+import tower.WeatherTower;
+import vehicles.AircraftFactory;
+import vehicles.Flyable;
 
 public class Simulator
 {
@@ -23,10 +23,11 @@ public class Simulator
 		ScenarioReader scenarioReader = null;
 		try
 		{
-			scenarioReader = ScenarioReader.readScenario(scenarioFile);	
+			scenarioReader = ScenarioReader.readScenario(scenarioFile);
 		}
 		catch (Exception e)
 		{
+			Logger.close();
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
@@ -59,11 +60,9 @@ public class Simulator
 		}
 		for (int i = 0; i < simulationCount; i++)
 		{
-			Logger.println("");
-			Logger.println("Simulation " + (i + 1) + ":");
 			weatherTower.changeWeather();
-
 		}
+		Logger.close();
 	}
 
 }

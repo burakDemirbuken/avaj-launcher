@@ -1,6 +1,6 @@
-package simulation.vehicles;
+package vehicles;
 
-import simulation.Logger;
+import logger.Logger;
 
 public class JetPlane extends Aircraft
 {
@@ -30,7 +30,7 @@ public class JetPlane extends Aircraft
 			case "SNOW":
 				this.coordinates = new Coordinates(this.coordinates.getLongitude(), this.coordinates.getLatitude(), this.coordinates.getHeight() - 7);
 				Logger.println("OMG! Winter is coming!");
-				break; 
+				break;
 			default:
 				throw new UnsupportedOperationException("Unknown weather condition: " + weather);
 		}
