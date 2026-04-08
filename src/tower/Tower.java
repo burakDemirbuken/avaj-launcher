@@ -31,7 +31,7 @@ public class Tower
 		Logger.println("Tower says: " + p_flyable + " unregistered from weather tower.");
 	}
 
-	protected void conditionsChanged()
+	protected void conditionChanged()
 	{
 		List<Flyable> currentObservers = new ArrayList<>(observers);
 		for (Flyable flyable : currentObservers)

@@ -18,11 +18,9 @@ public class AircraftFactory
 		return instance;
 	}
 
-	// TODOO: fonksiyonun sonundaki throw konusunda diğer fonksiyonlarada göz atılacak (Özellikle scenario reader)
-	public Flyable newAircraft(String type, String name, int longitude, int latitude, int height) throws InvalidAirCraftTypeException
+	public Flyable newAircraft(String type, String name, Coordinates coordinates) throws InvalidAirCraftTypeException
 	{
 		idCounter++;
-		Coordinates coordinates = new Coordinates(longitude, latitude, height);
 		switch (type)
 		{
 			case "Balloon":

@@ -6,6 +6,7 @@ import scenario.ScenarioAirCraftFormat;
 import scenario.ScenarioReader;
 import tower.WeatherTower;
 import vehicles.AircraftFactory;
+import vehicles.Coordinates;
 import vehicles.Flyable;
 
 public class Simulator
@@ -42,13 +43,8 @@ public class Simulator
 			try
 			{
 				ScenarioAirCraftFormat	scenarioAircraft = scenarios.get(i);
-
-				Flyable aircraft = AircraftFactory.getInstance().newAircraft(
-															scenarioAircraft.Type,
-															scenarioAircraft.Name,
-															scenarioAircraft.Longitude,
-															scenarioAircraft.Latitude,
-															scenarioAircraft.Height);
+				Coordinates coordinates = Coordinates.createCoordinates(scenarioAircraft.Longitude, scenarioAircraft.Latitude, scenarioAircraft.Height);
+				Flyable aircraft = AircraftFactory.getInstance().newAircraft(scenarioAircraft.Type, scenarioAircraft.Name, coordinates);
 
 				weatherTower.register(aircraft);
 			}

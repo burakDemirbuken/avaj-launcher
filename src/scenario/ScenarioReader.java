@@ -64,7 +64,7 @@ public class ScenarioReader
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			System.out.println(e.getMessage());
 			throw new InvalidScenarioException("Unexpected error occurred while reading scenario file");
 		}
 

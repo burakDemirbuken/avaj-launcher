@@ -24,4 +24,9 @@ public class Coordinates
 	public int getLongitude() {
 		return longitude;
 	}
+
+	public static Coordinates createCoordinates(int longitude, int latitude, int height)
+	{
+		return new Coordinates(longitude, latitude, height);
+	}
 }
