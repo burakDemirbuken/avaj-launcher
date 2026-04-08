@@ -4,7 +4,7 @@ import logger.Logger;
 
 public class JetPlane extends Aircraft
 {
-	JetPlane(Long p_id, String p_name, Coordinates p_coordinates)
+	public JetPlane(Long p_id, String p_name, Coordinates p_coordinates)
 	{
 		super(p_id, p_name, p_coordinates);
 	}
